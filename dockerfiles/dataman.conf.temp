@@ -17,7 +17,7 @@ filter {
 }
 
 output {
-  --ES_STDOUT_LEVEL--
+  --LS_STDOUT_LEVEL--
   if "_grokparsefailure" not in [tags] {
     elasticsearch {
       host => "--ES_HOST--"
@@ -28,9 +28,9 @@ output {
       template => "/usr/local/logstash/conf/logstash.json"
       template_name => "dataman"
       template_overwrite => "true"
-      workers => --ES_WORKERS--
-      flush_size => --ES_FLUSH_SIZE--
-      idle_flush_time => --ES_IDLE_FLUSH_TIME--
+      workers => --LS_WORKERS--
+      flush_size => --LS_FLUSH_SIZE--
+      idle_flush_time => --LS_IDLE_FLUSH_TIME--
     }
   }
 }
