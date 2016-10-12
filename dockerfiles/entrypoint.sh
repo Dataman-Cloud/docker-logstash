@@ -15,7 +15,7 @@ LS_IDLE_FLUSH_TIME=${LS_IDLE_FLUSH_TIME:-10}
 sed -i 's/--LOGSTASH_PORT--/'$LOGSTASH_PORT'/g' dataman.conf
 sed -i 's/--ES_HOST--/'$ES_HOST'/g' dataman.conf
 sed -i 's/--ES_PORT--/'$ES_PORT'/g' dataman.conf
-sed -i 's/--LS_STDOUT_LEVEL--/'$LS_STDOUT_LEVEL'/g' dataman.conf
+sed -i 's/--LS_STDOUT_LEVEL--/'"$LS_STDOUT_LEVEL"'/g' dataman.conf
 sed -i 's/--LS_WORKERS--/'$LS_WORKERS'/g' dataman.conf
 sed -i 's/--LS_FLUSH_SIZE--/'$LS_FLUSH_SIZE'/g' dataman.conf
 sed -i 's/--LS_IDLE_FLUSH_TIME--/'$LS_IDLE_FLUSH_TIME'/g' dataman.conf
