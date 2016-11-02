@@ -3,7 +3,7 @@ FROM demoregistry.dataman-inc.com/library/centos7-jdk8:latest
 MAINTAINER Jinye Liu "jyliu@dataman-inc.com"
 
 #logstash env
-ENV LOGSTASH_VERSION="2.4.0"
+ENV LOGSTASH_VERSION="1.5.4"
 ENV P_NAME logstash-${LOGSTASH_VERSION}
 ENV LOGSTASH_INSTALL_HOME /opt/${P_NAME}
 ENV LOGSTASH_HOME /usr/local/logstash

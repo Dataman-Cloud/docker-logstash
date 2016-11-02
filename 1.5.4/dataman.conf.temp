@@ -1,0 +1,36 @@
+input {
+  syslog {
+    host => "0.0.0.0"
+    port => --LOGSTASH_PORT--
+  }
+}
+
+filter {
+  ruby {
+    code => "event['timelogstash'] = event.timestamp.time.localtime.strftime('%Y-%m-%d')"
+  }
+  grok {
+    patterns_dir => ["./patterns"]
+    match => { "message" => "%{INT}%{SPACE}<%{INT}>%{INT}%{SPACE}%{TIMESTAMP_ISO8601:time}%{SPACE}%{HOSTNAME:hostname}%{SPACE}%{HOSTNAME:containerid}//%{HOSTNAME:appid}%{SPACE}/%{HOSTNAME:taskid}%{SPACE}%{INT}%{SPACE}%{HOSTNAME}//%{HOSTNAME}/%{HOSTNAME}%{SPACE}%{GREEDYDATA:log}" }
+    remove_field => ["priority", "severity", "facility", "facility_label", "severity_label", "@version", "message"]
+  }
+}
+
+output {
+  --LS_STDOUT_LEVEL--
+  if "_grokparsefailure" not in [tags] {
+    elasticsearch {
+      host => "--ES_HOST--"
+      port => "--ES_PORT--"
+      protocol => "http"
+      index => "dataman-%{timelogstash}"
+      document_type => "dataman-%{appid}"
+      template => "/usr/local/logstash/conf/logstash.json"
+      template_name => "dataman"
+      template_overwrite => "true"
+      workers => --LS_WORKERS--
+      flush_size => --LS_FLUSH_SIZE--
+      idle_flush_time => --LS_IDLE_FLUSH_TIME--
+    }
+  }
+}
