@@ -21,7 +21,6 @@ output {
   if "_grokparsefailure" not in [tags] {
     elasticsearch {
       hosts => ["--ES_HOST--:--ES_PORT--"]
-      protocol => "http"
       index => "dataman-%{timelogstash}"
       document_type => "dataman-%{appid}"
       template => "/usr/local/logstash/conf/logstash.json"
