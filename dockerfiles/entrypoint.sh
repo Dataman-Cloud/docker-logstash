@@ -7,7 +7,7 @@ cp -f dataman.conf.temp dataman.conf
 LOGSTASH_PORT=${LOGSTASH_PORT:-5011}
 ES_HOST=${ES_HOST:-127.0.0.1}
 ES_PORT=${ES_PORT:-9200}
-LS_STDOUT_LEVEL=${LS_STDOUT_LEVEL:-""} # stdout { codec => rubydebug }
+LS_STDOUT_LEVEL=${LS_STDOUT_LEVEL:-"stdout { codec => rubydebug }"} # stdout { codec => rubydebug }
 LS_WORKERS=${LS_WORKERS:-8}
 LS_FLUSH_SIZE=${LS_FLUSH_SIZE:-20000}
 LS_IDLE_FLUSH_TIME=${LS_IDLE_FLUSH_TIME:-10}
